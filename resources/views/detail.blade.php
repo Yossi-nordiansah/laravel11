@@ -11,8 +11,8 @@
         <div class="flex items-center justify-center text-gray-500 text-sm mb-8">
             <span class="mr-2">✍️</span> 
             <span class="font-medium text-blue-600">{{ $post['author'] }}</span>
-            <span class="mx-2">•</span>
-            <span>{{ \Carbon\Carbon::now()->format('d M Y') }}</span>
+            <span class="mx-2">|</span>
+            <span>{{ $post->updated_at->diffForHumans() }}</span>
         </div>
 
         <!-- Gambar Besar -->

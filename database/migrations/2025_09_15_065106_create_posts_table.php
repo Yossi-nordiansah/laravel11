@@ -1,6 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+// cara membuat migrate dengan terminal
+// php artisan make:migration create_posts_table
+// untuk membuat model beserta migrate nya : 
+// php artisan make:model User -m
+
+use Illuminate\Database\Migrations\Migration; 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
@@ -29,3 +34,5 @@ return new class extends Migration
         Schema::dropIfExists('posts');
     }
 };
+
+

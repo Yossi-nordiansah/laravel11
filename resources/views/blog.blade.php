@@ -25,7 +25,7 @@
                             {{ Str::limit($item['body'], 200) }}
                         </p>
 
-                        <a href="/about/{{ $item['slug'] }}" class="text-blue-600 font-medium hover:underline mt-4 inline-block">
+                        <a href="/detail/{{ $item['slug'] }}" class="text-blue-600 font-medium hover:underline mt-4 inline-block">
                             Baca selengkapnya →
                         </a>
                     </div>

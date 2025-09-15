@@ -2,6 +2,7 @@
 
 use App\Models\Post;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,11 +26,14 @@ Route::get('/blog', function () {
     return view('blog', ['title' => 'My Blog', 'post' => Post::all()]);
 });
 
-Route::get("/about/{id}", function ($slug) {
-    $post = Post::detail($slug);
+Route::get("/detail/{post:slug}", function (Post $post) {
     return view('detail', ['title' => "Detail Article", "post" => $post]);
 });
 
 Route::get('/contact', function () {
     return view('contact');
+});
+
+Route::get('/check-db', function () {
+    return DB::connection()->getDatabaseName();
 });
