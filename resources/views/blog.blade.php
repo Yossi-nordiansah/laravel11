@@ -19,10 +19,10 @@
                             {{ $item['title'] }}
                         </h2>
                         <p class="text-sm text-gray-500 mb-4">
-                            Oleh <span class="font-medium text-blue-600">{{ $item['author'] }}</span>
+                            Oleh <a href="/authors/{{ $item->author->id }}" class="font-medium text-blue-600">{{ $item->author->name }}</a>
                         </p>
                         <p class="text-gray-700 leading-relaxed">
-                            {{ Str::limit($item['body'], 200) }}
+                            {{ Str::limit($item['body'], 200) }} 
                         </p>
 
                         <a href="/detail/{{ $item['slug'] }}" class="text-blue-600 font-medium hover:underline mt-4 inline-block">

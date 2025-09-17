@@ -10,7 +10,7 @@
         <!-- Informasi Penulis & Tanggal -->
         <div class="flex items-center justify-center text-gray-500 text-sm mb-8">
             <span class="mr-2">✍️</span> 
-            <span class="font-medium text-blue-600">{{ $post['author'] }}</span>
+            <a href="/authors/{{ $post->author->id }}" class="font-medium text-blue-600">{{ $post->author->name }}</a>
             <span class="mx-2">|</span>
             <span>{{ $post->updated_at->diffForHumans() }}</span>
         </div>
