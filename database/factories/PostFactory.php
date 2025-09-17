@@ -4,6 +4,7 @@ namespace Database\Factories;
 //cara buat factory langsung nyambung dengan Model
 //php artisan make:factory PostFactory --model=Post
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -24,7 +25,8 @@ class PostFactory extends Factory
             "title" => fake()->sentence(),
             "slug" => Str::slug(fake()->sentence()),
             "body" => fake()->text(),
-            "author_id" => User::factory()
+            "author_id" => User::factory(),
+            "category_id" => Category::factory()
         ];
     }
 }

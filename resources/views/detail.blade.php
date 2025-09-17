@@ -12,6 +12,8 @@
             <span class="mr-2">✍️</span> 
             <a href="/authors/{{ $post->author->id }}" class="font-medium text-blue-600">{{ $post->author->name }}</a>
             <span class="mx-2">|</span>
+            <a href="/category/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+            <span class="mx-2">|</span>
             <span>{{ $post->updated_at->diffForHumans() }}</span>
         </div>
 
