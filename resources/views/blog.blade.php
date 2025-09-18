@@ -19,7 +19,7 @@
                             {{ $item['title'] }}
                         </h2>
                         <p class="text-sm text-gray-500 mb-4">
-                            Oleh <a href="/authors/{{ $item->author->id }}" class="font-medium text-blue-600">{{ $item->author->name }}</a> in
+                            Oleh <a href="/authors/{{ $item->author->name }}" class="font-medium text-blue-600">{{ $item->author->name }}</a> in
                             <a href="/category/{{ $item->category->slug }}">{{ $item->category->name }}</a>
                         </p>
                         <p class="text-gray-700 leading-relaxed">

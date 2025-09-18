@@ -25,19 +25,18 @@ Route::get('/about', function () {
     return view('about', ['title' => 'Yossi Nordiansah']);
 });
 Route::get('/blog', function () {
-    return view('blog', ['title' => 'My Blog', 'post' => Post::all()]);
+    return view('blog', ['title' => 'My Blog', 'post' => Post::get()]);
 });
 
 Route::get("/detail/{post:slug}", function (Post $post) {
     return view('detail', ['title' => "Detail Article", "post" => $post]);
 });
 
-Route::get("/authors/{user}", function (User $user) {
+Route::get("/authors/{user:name}", function (User $user) {
     return view('blog', ['title' => "Articles By " . $user->name, "post" => $user->post]);
 });
 
 Route::get("/category/{category:slug}", function (Category $category) {
-    // dd($category->post);
     return view('blog', ['title' => "Category in " . $category->name, "post" => $category->post]);
 });
 

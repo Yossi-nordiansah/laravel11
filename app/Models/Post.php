@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+//membuat model beserta migrationnya
+//php artisan make:model Post -m
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Post extends Model
 {   
     use HasFactory;
+    protected $with = ['author', 'category'];
     protected $table = 'posts';
     protected $primaryKey = 'id';
     protected $fillable = ['title', 'author', 'slug', 'body'];
