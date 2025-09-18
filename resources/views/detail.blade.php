@@ -1,40 +1,30 @@
 <x-layout>
     <x-slot:title>{{ $post['title'] }}</x-slot:title>
 
-    <div class="max-w-4xl mx-auto px-6 py-12">
-        <!-- Judul -->
-        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight text-center">
-            {{ $post['title'] }}
-        </h1>
-
-        <!-- Informasi Penulis & Tanggal -->
-        <div class="flex items-center justify-center text-gray-500 text-sm mb-8">
-            <span class="mr-2">✍️</span> 
-            <a href="/authors/{{ $post->author->id }}" class="font-medium text-blue-600">{{ $post->author->name }}</a>
-            <span class="mx-2">|</span>
-            <a href="/category/{{ $post->category->slug }}">{{ $post->category->name }}</a>
-            <span class="mx-2">|</span>
-            <span>{{ $post->updated_at->diffForHumans() }}</span>
-        </div>
-
-        <!-- Gambar Besar -->
-        <div class="rounded-2xl overflow-hidden shadow-lg mb-10">
-            <img src="https://source.unsplash.com/1200x600?tech,code,programming&sig={{ $post['id'] }}" 
-                 alt="Thumbnail {{ $post['title'] }}" 
-                 class="w-full h-[400px] object-cover">
-        </div>
-
-        <!-- Konten Artikel -->
-        <article class="prose prose-lg max-w-none text-gray-800 leading-relaxed">
-            {!! nl2br(e($post['body'])) !!}
-        </article>
-
-        <!-- Tombol Kembali -->
-        <div class="mt-12 flex justify-center">
-            <a href="/blog" 
-               class="px-6 py-3 bg-blue-600 text-white font-medium rounded-xl shadow-md hover:bg-blue-700 transition">
-                ← Kembali ke Blog
-            </a>
-        </div>
-    </div>
+<main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
+  <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
+      <article class="mx-auto w-full max-w-6xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+          <header class="mb-4 lg:mb-6 not-format">
+              <address class="flex items-center mb-6 not-italic">
+                  <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                      <img class="mr-4 w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Jese Leos">
+                      <div>
+                          <a href="/authors/{{ $post->author->name }}" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{{ $post->author->name }}</a>
+                          <a href='/category/{{ $post->category->slug}}' class="text-base text-gray-500 dark:text-gray-400 block">{{ $post->category->name }}</a>
+                          <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="2022-02-08" title="February 8th, 2022">{{  $post->updated_at->diffForHumans() }}</time></p>
+                      </div>
+                  </div>
+              </address>
+              <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{{ $post->title }}</h1>
+          </header>
+          <p>{{ $post->body }}</p>
+   
+          <blockquote>
+              <p>Flowbite is just awesome. It contains tons of predesigned components and pages starting from
+                  login screen to complex dashboard. Perfect choice for your next SaaS application.</p>
+          </blockquote>
+          <a href="/blog">&laquo; Back to All Post</a>
+      </article>
+  </div>
+</main>
 </x-layout>

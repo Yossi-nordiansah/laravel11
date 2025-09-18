@@ -1,36 +1,53 @@
 <x-layout>
+    @php
+        $colors = [
+            'red' => 'bg-red-300',
+            'blue' => 'bg-blue-300',
+            'yellow' => 'bg-yellow-300',
+        ];
+    @endphp
     <x-slot:title>{{ $title }}</x-slot:title>
 
-    <div class="max-w-5xl mx-auto px-6 py-16">
+    <div class="w-11/12 mx-auto px-6 py-16">
         <h1 class="text-4xl font-extrabold text-blue-600 mb-10 text-center">
             {{ $title }}
         </h1>
 
         <div class="grid gap-8 md:grid-cols-2">
             @foreach ($post as $item)
-                <div class="bg-white shadow-lg rounded-2xl overflow-hidden">
-                    <!-- Gambar random -->
-                    <img src="https://source.unsplash.com/600x400?tech,code,programming&sig={{ $loop->index }}" 
-                         alt="Thumbnail {{ $item['title'] }}" 
-                         class="w-full h-48 object-cover">
-
-                    <div class="p-6">
-                        <h2 class="text-2xl font-bold mb-2 text-gray-800">
-                            {{ $item['title'] }}
-                        </h2>
-                        <p class="text-sm text-gray-500 mb-4">
-                            Oleh <a href="/authors/{{ $item->author->name }}" class="font-medium text-blue-600">{{ $item->author->name }}</a> in
-                            <a href="/category/{{ $item->category->slug }}">{{ $item->category->name }}</a>
-                        </p>
-                        <p class="text-gray-700 leading-relaxed">
-                            {{ Str::limit($item['body'], 200) }} 
-                        </p>
-
-                        <a href="/detail/{{ $item['slug'] }}" class="text-blue-600 font-medium hover:underline mt-4 inline-block">
-                            Baca selengkapnya →
+                <article
+                    class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                    <div class="flex justify-between items-center mb-5 text-gray-500">
+                        <a href="/category/{{ $item->category->slug }}"
+                            class="{{ $colors[$item->category->color] ?? 'bg-gray-300 text-gray-800' }} text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
+                            {{ $item->category->name }}
+                        </a>
+                        <span class="text-sm">{{ $item->updated_at->diffForHumans() }}</span>
+                    </div>
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a
+                            href="#">{{ $item['title'] }}</a></h2>
+                    <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ Str::limit($item['body'], 200) }}</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img class="w-7 h-7 rounded-full"
+                                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
+                                alt="{{ $item->author->name }}" />
+                            <a href="/authors/{{ $item->author->name }}" class="font-medium dark:text-white">
+                                {{ $item->author->name }}
+                            </a>
+                        </div>
+                        <a href="/detail/{{ $item['slug'] }}"
+                            class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
+                            Read more
+                            <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
                         </a>
                     </div>
-                </div>
+                </article>
             @endforeach
         </div>
     </div>
