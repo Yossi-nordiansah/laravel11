@@ -44,7 +44,7 @@
                 </form>
             </div>
         </div>
-        <div class="grid gap-8 md:grid-cols-2">
+        <div class="grid gap-8 md:grid-cols-2 mb-10">
             @forelse ($post as $item)
                 <article
                     class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -87,5 +87,6 @@
                 </div>
             @endforelse
         </div>
+        {{ $post->links() }}
     </div>
 </x-layout>
