@@ -5,9 +5,13 @@ namespace App\Models;
 //membuat model beserta migrationnya
 //php artisan make:model Post -m
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Contracts\Database\Query\Builder as QueryBuilder;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 
 class Post extends Model
 {   
@@ -23,6 +27,13 @@ class Post extends Model
 
     public function category(): BelongsTo {
         return $this->belongsTo(Category::class);
+    }
+
+    public function scopeFilter(EloquentBuilder $query, array $filters): void {
+
+        $query->when($filters['search'] ?? false, fn ($query, $search) => $query->where('title', 'like', '%' . $search . '%'));
+        $query->when($filters['category'] ?? false, fn ($query, $category) => $query->whereHas('category', fn ($query) => $query->where('slug', $category)));
+        $query->when($filters['author'] ?? false, fn ($query, $author) => $query->whereHas('author', fn ($query) => $query->where('name', $author)));
     }
 }
 

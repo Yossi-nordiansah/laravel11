@@ -24,8 +24,9 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about', ['title' => 'Yossi Nordiansah']);
 });
+
 Route::get('/blog', function () {
-    return view('blog', ['title' => 'My Blog', 'post' => Post::get()]);
+    return view('blog', ['title' => 'My Blog', 'post' => Post::filter(request(['search', 'category', 'author']))->latest()->get()]);
 });
 
 Route::get("/detail/{post:slug}", function (Post $post) {
